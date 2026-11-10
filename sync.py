@@ -5,6 +5,10 @@ Uso:
   NOTION_TOKEN=secret_xxx python3 sync.py
 Variabili opzionali: LIBRARY_DS_ID (data source del database Library).
 Solo libreria standard: gira sia in locale sia su GitHub Actions.
+
+Copertina di un libro: la prima immagine dentro la sua pagina Notion
+(in mancanza, la copertina della pagina). I file caricati su Notion hanno
+link che scadono dopo un'ora, quindi vengono scaricati in covers/.
 """
 import json
 import os
@@ -14,7 +18,10 @@ import urllib.request
 
 DS_ID = os.environ.get("LIBRARY_DS_ID", "b6efa415-dc82-4e35-a112-6590b91ff129")
 NOTION_VERSION = "2025-09-03"
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "books.json")
+ROOT = os.path.dirname(os.path.abspath(__file__))
+OUT = os.path.join(ROOT, "books.json")
+COVERS = os.path.join(ROOT, "covers")
+IMAGE_EXT = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 
 
 def http_json(url, data=None, headers=None):
@@ -23,12 +30,15 @@ def http_json(url, data=None, headers=None):
         return json.loads(r.read().decode())
 
 
-def notion_rows(token):
-    headers = {
+def notion_headers(token):
+    return {
         "Authorization": f"Bearer {token}",
         "Notion-Version": NOTION_VERSION,
         "Content-Type": "application/json",
     }
+
+
+def notion_rows(token):
     rows, cursor = [], None
     while True:
         body = {"page_size": 100}
@@ -37,12 +47,54 @@ def notion_rows(token):
         res = http_json(
             f"https://api.notion.com/v1/data_sources/{DS_ID}/query",
             json.dumps(body).encode(),
-            headers,
+            notion_headers(token),
         )
         rows += res["results"]
         if not res.get("has_more"):
             return rows
         cursor = res["next_cursor"]
+
+
+def file_url(obj):
+    """URL di un oggetto file Notion (caricato o link esterno)."""
+    if not obj:
+        return None
+    if obj.get("type") == "file":
+        return obj["file"]["url"]
+    if obj.get("type") == "external":
+        return obj["external"]["url"]
+    return None
+
+
+def cover_source(token, page):
+    """(chiave stabile, url) della copertina, o (None, None)."""
+    res = http_json(
+        f"https://api.notion.com/v1/blocks/{page['id']}/children?page_size=25",
+        headers=notion_headers(token),
+    )
+    for block in res["results"]:
+        if block["type"] == "image":
+            url = file_url(block["image"])
+            if url:
+                # L'id del blocco cambia solo se l'immagine viene sostituita
+                key = block["id"] + ":" + (block.get("last_edited_time") or "")
+                return key, url
+    url = file_url(page.get("cover"))
+    if url:
+        return "cover:" + url.split("?")[0], url
+    return None, None
+
+
+def download_cover(page_id, url):
+    ext = os.path.splitext(urllib.parse.urlparse(url).path)[1].lower()
+    if ext not in IMAGE_EXT:
+        ext = ".jpg"
+    name = page_id.replace("-", "") + ext
+    os.makedirs(COVERS, exist_ok=True)
+    req = urllib.request.Request(url, headers={"User-Agent": "libreria-notion"})
+    with urllib.request.urlopen(req, timeout=60) as r, open(os.path.join(COVERS, name), "wb") as f:
+        f.write(r.read())
+    return "covers/" + name
 
 
 def text(prop):
@@ -66,7 +118,6 @@ def text(prop):
 
 def to_book(page):
     p = page["properties"]
-    cover = page.get("cover") or {}
     rating = text(p.get("Rating")) or ""
     return {
         "id": page["id"],
@@ -81,42 +132,35 @@ def to_book(page):
         "pagesRead": text(p.get("Pages Read")),
         "finished": text(p.get("Date Finished")),
         "overview": text(p.get("Overview")),
-        # Solo le copertine "link" sono stabili: i file caricati scadono dopo un'ora.
-        "cover": cover["external"]["url"] if cover.get("type") == "external" else None,
+        "cover": None,
+        "coverKey": None,
         "created": page["created_time"],
     }
 
 
-def openlibrary_cover(book):
-    q = {"title": book["title"], "limit": 5, "fields": "cover_i"}
-    if book.get("author"):
-        q["author"] = book["author"]
-    try:
-        res = http_json(
-            "https://openlibrary.org/search.json?" + urllib.parse.urlencode(q),
-            headers={"User-Agent": "libreria-notion (elisamagli)"},
-        )
-    except Exception as e:
-        print(f"  copertina non trovata per {book['title']}: {e}", file=sys.stderr)
-        return None
-    for d in res.get("docs", []):
-        if d.get("cover_i"):
-            return f"https://covers.openlibrary.org/b/id/{d['cover_i']}-L.jpg"
-    return None
-
-
-def enrich_covers(books, previous):
-    """Cerca su Open Library solo i libri nuovi, riusando le ricerche già fatte."""
+def attach_covers(token, pages, books, previous):
+    """Scarica solo le copertine nuove o cambiate e rimuove quelle orfane."""
     cache = {b["id"]: b for b in previous}
-    for b in books:
-        old = cache.get(b["id"])
-        if b["cover"]:
-            continue
-        if old and old.get("title") == b["title"] and "autoCover" in old:
-            b["autoCover"] = old["autoCover"]
-        else:
-            b["autoCover"] = openlibrary_cover(b)
-    return books
+    for page, b in zip(pages, books):
+        try:
+            key, url = cover_source(token, page)
+        except Exception as e:
+            print(f"  blocchi non leggibili per {b['title']}: {e}", file=sys.stderr)
+            key, url = None, None
+        old = cache.get(b["id"], {})
+        if key and key == old.get("coverKey") and old.get("cover") and os.path.exists(os.path.join(ROOT, old["cover"])):
+            b["cover"], b["coverKey"] = old["cover"], key
+        elif key:
+            try:
+                b["cover"], b["coverKey"] = download_cover(b["id"], url), key
+                print(f"  copertina aggiornata: {b['title']}")
+            except Exception as e:
+                print(f"  copertina non scaricata per {b['title']}: {e}", file=sys.stderr)
+    used = {os.path.basename(b["cover"]) for b in books if b["cover"]}
+    if os.path.isdir(COVERS):
+        for name in os.listdir(COVERS):
+            if name not in used:
+                os.remove(os.path.join(COVERS, name))
 
 
 def main():
@@ -128,9 +172,9 @@ def main():
             previous = json.load(f)["books"]
     except (OSError, ValueError, KeyError):
         previous = []
-    books = [to_book(p) for p in notion_rows(token)]
-    books.sort(key=lambda b: b["created"])
-    enrich_covers(books, previous)
+    pages = sorted(notion_rows(token), key=lambda p: p["created_time"])
+    books = [to_book(p) for p in pages]
+    attach_covers(token, pages, books, previous)
     with open(OUT, "w") as f:
         json.dump({"books": books}, f, ensure_ascii=False, indent=1)
     print(f"{len(books)} libri scritti in books.json")
