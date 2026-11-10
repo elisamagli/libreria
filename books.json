@@ -2,7 +2,7 @@
  "books": [
   {
    "id": "1558b2de-b96b-4356-bca9-b2d0ade5673f",
-   "url": "https://www.notion.so/1558b2deb96b4356bca9b2d0ade5673f",
+   "url": "https://app.notion.com/p/Invisibili-1558b2deb96b4356bca9b2d0ade5673f",
    "title": "Invisibili",
    "author": "Caroline Criado Perez",
    "publisher": "Einaudi",
@@ -17,31 +17,12 @@
    "finished": "2025-01-16",
    "overview": null,
    "cover": null,
-   "created": "2023-10-23T17:50:09Z",
-   "autoCover": null
-  },
-  {
-   "id": "79873216-8a96-4355-a30d-336645b2c8df",
-   "url": "https://www.notion.so/798732168a964355a30d336645b2c8df",
-   "title": "Se i gatti scomparissero dal mondo",
-   "author": "Genki Kawamura",
-   "publisher": "Einaudi",
-   "genres": [
-    "Narrativa Straniera"
-   ],
-   "rating": 5,
-   "status": "Finished",
-   "pages": 176,
-   "pagesRead": 176,
-   "finished": "2025-01-16",
-   "overview": null,
-   "cover": null,
-   "created": "2023-10-23T17:50:09Z",
+   "created": "2023-10-23T17:50:00.000Z",
    "autoCover": null
   },
   {
    "id": "92fed515-ece4-4edc-9724-86391500bd8d",
-   "url": "https://www.notion.so/92fed515ece44edc972486391500bd8d",
+   "url": "https://app.notion.com/p/Il-maestro-e-Margherita-92fed515ece44edc972486391500bd8d",
    "title": "Il maestro e Margherita",
    "author": "Michail Bulgakov",
    "publisher": "Feltrinelli",
@@ -56,12 +37,31 @@
    "finished": null,
    "overview": "Book Progress",
    "cover": null,
-   "created": "2023-10-23T17:50:09Z",
+   "created": "2023-10-23T17:50:00.000Z",
+   "autoCover": null
+  },
+  {
+   "id": "79873216-8a96-4355-a30d-336645b2c8df",
+   "url": "https://app.notion.com/p/Se-i-gatti-scomparissero-dal-mondo-798732168a964355a30d336645b2c8df",
+   "title": "Se i gatti scomparissero dal mondo",
+   "author": "Genki Kawamura",
+   "publisher": "Einaudi",
+   "genres": [
+    "Narrativa Straniera"
+   ],
+   "rating": 5,
+   "status": "Finished",
+   "pages": 176,
+   "pagesRead": 176,
+   "finished": "2025-01-16",
+   "overview": null,
+   "cover": null,
+   "created": "2023-10-23T17:50:00.000Z",
    "autoCover": null
   },
   {
    "id": "1bc265b8-a30c-80fc-8cea-c5a6bd745f3e",
-   "url": "https://www.notion.so/1bc265b8a30c80fc8ceac5a6bd745f3e",
+   "url": "https://app.notion.com/p/Il-mostruoso-femminile-Il-patriarcato-e-la-paura-delle-donne-1bc265b8a30c80fc8ceac5a6bd745f3e",
    "title": "Il mostruoso femminile. Il patriarcato e la paura delle donne",
    "author": "Jude Ellison Sady Doyle",
    "publisher": "Tlon",
@@ -76,12 +76,12 @@
    "finished": null,
    "overview": null,
    "cover": null,
-   "created": "2025-03-20T15:50:48Z",
+   "created": "2025-03-20T15:50:00.000Z",
    "autoCover": "https://covers.openlibrary.org/b/id/14518676-L.jpg"
   },
   {
    "id": "1bc265b8-a30c-800e-a96d-c8a8616197a8",
-   "url": "https://www.notion.so/1bc265b8a30c800ea96dc8a8616197a8",
+   "url": "https://app.notion.com/p/I-miei-giorni-alla-libreria-Morisaki-1bc265b8a30c800ea96dc8a8616197a8",
    "title": "I miei giorni alla libreria Morisaki",
    "author": "Satoshi Yagisawa",
    "publisher": "Feltrinelli",
@@ -95,12 +95,12 @@
    "finished": "2025-01-16",
    "overview": null,
    "cover": null,
-   "created": "2025-03-20T16:09:50Z",
+   "created": "2025-03-20T16:09:00.000Z",
    "autoCover": null
   },
   {
    "id": "1bc265b8-a30c-80a9-9054-e8b1f1d355af",
-   "url": "https://www.notion.so/1bc265b8a30c80a99054e8b1f1d355af",
+   "url": "https://app.notion.com/p/Lo-squalificato-1bc265b8a30c80a99054e8b1f1d355af",
    "title": "Lo squalificato",
    "author": "Osamu Dazai",
    "publisher": "Feltrinelli",
@@ -114,12 +114,12 @@
    "finished": "2025-01-16",
    "overview": null,
    "cover": null,
-   "created": "2025-03-20T16:13:42Z",
+   "created": "2025-03-20T16:13:00.000Z",
    "autoCover": null
   },
   {
    "id": "1bc265b8-a30c-80f8-b082-cc38754f5830",
-   "url": "https://www.notion.so/1bc265b8a30c80f8b082cc38754f5830",
+   "url": "https://app.notion.com/p/Kitchen-1bc265b8a30c80f8b082cc38754f5830",
    "title": "Kitchen",
    "author": "Banana Yoshimoto",
    "publisher": "Feltrinelli",
@@ -133,12 +133,12 @@
    "finished": null,
    "overview": null,
    "cover": null,
-   "created": "2025-03-20T16:39:06Z",
+   "created": "2025-03-20T16:39:00.000Z",
    "autoCover": "https://covers.openlibrary.org/b/id/569477-L.jpg"
   },
   {
    "id": "1c0265b8-a30c-8015-bdfe-ea060408e958",
-   "url": "https://www.notion.so/1c0265b8a30c8015bdfeea060408e958",
+   "url": "https://app.notion.com/p/L-avvelenatrice-di-uomini-1c0265b8a30c8015bdfeea060408e958",
    "title": "L'avvelenatrice di uomini",
    "author": "Cathryn Kemp",
    "publisher": "Nord",
@@ -152,12 +152,12 @@
    "finished": "2026-07-01",
    "overview": null,
    "cover": null,
-   "created": "2025-03-24T14:18:10Z",
+   "created": "2025-03-24T14:18:00.000Z",
    "autoCover": null
   },
   {
    "id": "1ed265b8-a30c-80b5-b27b-c0c0bf96c9bd",
-   "url": "https://www.notion.so/1ed265b8a30c80b5b27bc0c0bf96c9bd",
+   "url": "https://app.notion.com/p/Horrida-1ed265b8a30c80b5b27bc0c0bf96c9bd",
    "title": "Horrida",
    "author": "Louisa May Alcott",
    "publisher": "ReBelle Box",
@@ -171,12 +171,12 @@
    "finished": "2025-05-08",
    "overview": null,
    "cover": null,
-   "created": "2025-05-08T12:07:40Z",
+   "created": "2025-05-08T12:07:00.000Z",
    "autoCover": null
   },
   {
    "id": "1f2265b8-a30c-80c8-bc87-ca4ef5b42b8e",
-   "url": "https://www.notion.so/1f2265b8a30c80c8bc87ca4ef5b42b8e",
+   "url": "https://app.notion.com/p/Finanza-personale-con-Excel-con-Mike-1f2265b8a30c80c8bc87ca4ef5b42b8e",
    "title": "Finanza personale con Excel con Mike",
    "author": "Michele Costopulos Cappi",
    "publisher": "Apogeo",
@@ -190,12 +190,12 @@
    "finished": null,
    "overview": "Book progress",
    "cover": null,
-   "created": "2025-05-13T13:35:00Z",
+   "created": "2025-05-13T13:35:00.000Z",
    "autoCover": null
   },
   {
    "id": "1f8265b8-a30c-80b7-aade-e3fb3d462c9e",
-   "url": "https://www.notion.so/1f8265b8a30c80b7aadee3fb3d462c9e",
+   "url": "https://app.notion.com/p/Una-straordinaria-follia-1f8265b8a30c80b7aadee3fb3d462c9e",
    "title": "Una straordinaria follia",
    "author": "Nassir Ghaemi",
    "publisher": "Apogeo",
@@ -209,12 +209,12 @@
    "finished": null,
    "overview": null,
    "cover": null,
-   "created": "2025-05-19T13:57:40Z",
+   "created": "2025-05-19T13:57:00.000Z",
    "autoCover": null
   },
   {
    "id": "224265b8-a30c-80c8-aff8-e9c578fa02e6",
-   "url": "https://www.notion.so/224265b8a30c80c8aff8e9c578fa02e6",
+   "url": "https://app.notion.com/p/Fisica-esistenziale-224265b8a30c80c8aff8e9c578fa02e6",
    "title": "Fisica esistenziale",
    "author": "Sabine Hossenfelder",
    "publisher": "Apogeo",
@@ -228,12 +228,12 @@
    "finished": null,
    "overview": "Book Progress",
    "cover": null,
-   "created": "2025-07-02T10:28:24Z",
+   "created": "2025-07-02T10:28:00.000Z",
    "autoCover": null
   },
   {
    "id": "230265b8-a30c-801c-ab88-e16f14c5f4b6",
-   "url": "https://www.notion.so/230265b8a30c801cab88e16f14c5f4b6",
+   "url": "https://app.notion.com/p/Perch-sei-sempre-a-dieta-230265b8a30c801cab88e16f14c5f4b6",
    "title": "Perché sei sempre a dieta",
    "author": "Sara Olivieri",
    "publisher": "Gribaudo",
@@ -247,12 +247,12 @@
    "finished": null,
    "overview": "Book progress",
    "cover": null,
-   "created": "2025-07-14T15:28:51Z",
+   "created": "2025-07-14T15:28:00.000Z",
    "autoCover": null
   },
   {
    "id": "281265b8-a30c-8076-b0d7-c3b873289eed",
-   "url": "https://www.notion.so/281265b8a30c8076b0d7c3b873289eed",
+   "url": "https://app.notion.com/p/Lascia-che-la-vita-accada-281265b8a30c8076b0d7c3b873289eed",
    "title": "Lascia che la vita accada",
    "author": "Sara Colombo",
    "publisher": "Ponte alle Grazie",
@@ -266,12 +266,12 @@
    "finished": "2025-10-03",
    "overview": null,
    "cover": null,
-   "created": "2025-10-03T15:43:57Z",
+   "created": "2025-10-03T15:43:00.000Z",
    "autoCover": null
   },
   {
    "id": "293265b8-a30c-807e-9620-dd3cf636e43e",
-   "url": "https://www.notion.so/293265b8a30c807e9620dd3cf636e43e",
+   "url": "https://app.notion.com/p/Don-t-make-me-think-293265b8a30c807e9620dd3cf636e43e",
    "title": "Don’t make me think",
    "author": "Steve Krug",
    "publisher": "tecniche nuove",
@@ -285,12 +285,12 @@
    "finished": "2025-10-21",
    "overview": null,
    "cover": null,
-   "created": "2025-10-21T16:22:32Z",
+   "created": "2025-10-21T16:22:00.000Z",
    "autoCover": "https://covers.openlibrary.org/b/id/554640-L.jpg"
   },
   {
    "id": "293265b8-a30c-803a-8d17-f0d8b0cc8577",
-   "url": "https://www.notion.so/293265b8a30c803a8d17f0d8b0cc8577",
+   "url": "https://app.notion.com/p/La-caffettiera-del-masochista-293265b8a30c803a8d17f0d8b0cc8577",
    "title": "La caffettiera del masochista",
    "author": "Donald Norman",
    "publisher": "Giunti",
@@ -304,7 +304,7 @@
    "finished": null,
    "overview": "Book Progress",
    "cover": null,
-   "created": "2025-10-21T16:25:28Z",
+   "created": "2025-10-21T16:25:00.000Z",
    "autoCover": null
   }
  ]
