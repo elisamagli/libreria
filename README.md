@@ -30,8 +30,12 @@ Aggiungi o modifica un libro nel database Library: entro 30 minuti compare sulla
 (per farlo subito: *Actions → Run workflow*). Usa Name, Author, Editore, Genre, Rating, Status,
 Total Pages, Pages Read, Date Finished.
 
-**Copertine**: se la pagina del libro ha una copertina impostata come *Link* (Cambia copertina → Link),
-viene usata quella; altrimenti si cerca su Open Library; se non c'è, la libreria disegna una copertina tipografica.
+**Copertine**: è la prima immagine dentro la pagina del libro (in mancanza, la copertina della pagina).
+Lo script la scarica in `covers/` perché i link dei file Notion scadono dopo un'ora; il dorso prende il
+colore dominante della copertina. Senza immagine, la libreria disegna una copertina tipografica.
+
+**Uso**: clic su un dorso → il libro ruota e mostra la copertina, con la scheda sotto la mensola.
+Frecce ← → (o tastiera, o scorrimento col dito) per passare al libro precedente/successivo; Esc chiude.
 
 GitHub sospende i workflow programmati dopo 60 giorni senza attività nel repository: se succede,
 basta premere *Enable workflow* nella scheda Actions.
