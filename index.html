@@ -51,7 +51,10 @@
   .book:focus-visible { outline: none; }
   .box { position: absolute; left: 50%; bottom: 0; width: var(--w); height: var(--h); margin-left: calc(var(--w) / -2); transform-style: preserve-3d; transform: rotateY(90deg); transition: transform .9s var(--ease); }
   .book:not(.open):hover .box, .book:not(.open):focus-visible .box { transform: translateY(-14px) rotateY(90deg); }
-  .book.open .box { transform: translateY(-18px) rotateY(14deg); }
+  .book.open .box { transform: rotateY(14deg); }
+  /* dorso visibile del libro esposto: velo nero al 50% */
+  .spine::after { content: ""; position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity .9s var(--ease); }
+  .book.open .spine::after { opacity: .5; }
   .face { position: absolute; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
   .front { inset: 0; transform: translateZ(calc(var(--t) / 2)); }
   .back { inset: 0; transform: rotateY(180deg) translateZ(calc(var(--t) / 2)); background: var(--c); }
