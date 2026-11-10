@@ -1,0 +1,27 @@
+name: Sincronizza libreria da Notion
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # ogni 30 minuti
+  workflow_dispatch:          # pulsante "Run workflow" per aggiornare subito
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python sync.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      - name: Salva books.json se è cambiato
+        run: |
+          git config user.name "libreria-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add books.json
+          git diff --cached --quiet || (git commit -m "Aggiorna libreria da Notion" && git push)

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La mia libreria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;700;800&family=Oswald:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #efede8;
+    --ink: #1b1a18;
+    --muted: #77736b;
+    --line: #d9d5cc;
+    --shelf: #c9c3b6;
+    --serif: "Cormorant Garamond", "Didot", Georgia, serif;
+    --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --cond: "Oswald", "Arial Narrow", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { background: var(--paper); color: var(--ink); }
+  body { font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
+
+  header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 24px 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+  header .count { justify-self: end; }
+  h1 { font-family: var(--serif); font-weight: 500; text-align: center; font-size: clamp(34px, 7vw, 64px); line-height: .95; letter-spacing: .01em; text-transform: uppercase; margin: 22px 16px 10px; }
+  .stats { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+
+  .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 14px; margin: 18px 16px 0; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .controls button { font: inherit; letter-spacing: inherit; text-transform: inherit; background: none; border: 0; padding: 4px 0; color: var(--muted); cursor: pointer; border-bottom: 1px solid transparent; }
+  .controls button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+  .controls .sep { width: 1px; height: 12px; background: var(--line); }
+  .controls select { font: inherit; letter-spacing: inherit; text-transform: inherit; background: none; border: 0; color: var(--ink); cursor: pointer; }
+
+  .shelf-wrap { position: relative; margin-top: 26px; overflow-x: auto; overflow-y: visible; scrollbar-width: thin; }
+  .shelf { display: flex; align-items: flex-end; gap: 3px; min-width: max-content; padding: 40px 32px 0; margin: 0 auto; width: max-content; min-height: 300px; }
+  .shelf-base { height: 10px; background: linear-gradient(var(--shelf), #b9b2a3); margin: 0 16px; border-radius: 1px; box-shadow: 0 8px 14px -8px rgba(0,0,0,.35); }
+  .empty { color: var(--muted); font-family: var(--serif); font-style: italic; font-size: 22px; align-self: center; margin: auto; }
+
+  .book { position: relative; flex: none; border: 0; padding: 0; cursor: pointer; background: var(--c); color: var(--t); transform-origin: bottom left; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; box-shadow: inset 2px 0 0 rgba(255,255,255,.12), inset -3px 0 4px rgba(0,0,0,.12); border-radius: 2px 2px 0 0; animation: rise .6s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 35ms); }
+  @keyframes rise { from { opacity: 0; transform: translateY(30px); } }
+  .book:hover, .book:focus-visible { transform: translateY(-16px) rotate(var(--tilt, 0deg)); box-shadow: 0 14px 18px -10px rgba(0,0,0,.4); outline: none; z-index: 2; }
+  .book.lean { transform: rotate(var(--tilt)); margin-left: calc(var(--h) * .17); }
+  .book .spine { position: absolute; inset: 10px 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; writing-mode: vertical-rl; transform: rotate(180deg); overflow: hidden; }
+  .book .t { font-size: 13px; line-height: 1.05; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 2px; min-height: 0; }
+  .book .a { flex: none; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; opacity: .85; white-space: nowrap; margin-top: 8px; }
+  .book.small .t { font-size: 11px !important; }
+  .book .mark { position: absolute; left: 50%; top: 6px; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: currentColor; opacity: .6; }
+  .s0 .t { font-family: var(--serif); font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: .04em; }
+  .s1 .t { font-family: var(--sans); font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; }
+  .s2 .t { font-family: var(--cond); text-transform: uppercase; letter-spacing: .08em; }
+  .s3 .t { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 16px; }
+
+  .book.face { background: none; box-shadow: none; animation-name: rise; }
+  .book.face .cover { width: 100%; height: 100%; box-shadow: 6px 0 0 -2px rgba(0,0,0,.18), 0 10px 16px -10px rgba(0,0,0,.45); }
+  .book.face .ribbon { position: absolute; top: -8px; right: 10px; font-size: 8px; letter-spacing: .14em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 3px 6px; }
+
+  .cover { position: relative; overflow: hidden; background: var(--c); color: var(--t); display: flex; flex-direction: column; justify-content: space-between; padding: 12% 10%; text-align: center; border-radius: 1px 3px 3px 1px; }
+  .cover::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5%; background: linear-gradient(90deg, rgba(0,0,0,.18), transparent); }
+  .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cover .ct { font-family: var(--serif); font-weight: 600; text-transform: uppercase; line-height: 1.02; letter-spacing: .02em; font-size: 15px; overflow-wrap: anywhere; }
+  .cover .rule { width: 30%; height: 1px; background: currentColor; margin: 0 auto; opacity: .7; }
+  .cover .ca { font-size: 8px; letter-spacing: .16em; text-transform: uppercase; }
+
+  /* dettaglio */
+  .detail { position: fixed; inset: 0; display: grid; place-items: center; padding: 16px; background: rgba(239,237,232,.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity .25s; z-index: 10; }
+  .detail.open { opacity: 1; pointer-events: auto; }
+  .card { position: relative; display: grid; grid-template-columns: 200px 1fr; gap: 28px; width: min(640px, 100%); max-height: calc(100vh - 32px); overflow: auto; background: #faf9f6; padding: 28px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45); transform: translateY(16px) scale(.98); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .detail.open .card { transform: none; }
+  .card .cover { width: 200px; height: 300px; padding: 22px 18px; }
+  .card .cover .ct { font-size: 24px; }
+  .card .cover .ca { font-size: 10px; }
+  .card .close { position: absolute; top: 10px; right: 12px; border: 0; background: none; font-size: 22px; line-height: 1; cursor: pointer; color: var(--muted); padding: 4px; }
+  .info .kicker { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .info h2 { font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.02; margin: 8px 0 6px; }
+  .info .by { font-size: 14px; }
+  .info .stars { margin-top: 12px; font-size: 16px; letter-spacing: .12em; color: #c8902a; }
+  .info .stars .off { color: var(--line); }
+  .info dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin-top: 18px; font-size: 12px; }
+  .info dt { color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: 10px; padding-top: 2px; }
+  .info .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .info .tags span { border: 1px solid var(--line); padding: 1px 7px; border-radius: 99px; font-size: 11px; }
+  .progress { margin-top: 18px; }
+  .progress .bar { height: 3px; background: var(--line); margin-top: 6px; }
+  .progress .bar i { display: block; height: 100%; background: var(--ink); }
+  .info p.ov { margin-top: 16px; font-family: var(--serif); font-size: 17px; line-height: 1.35; }
+  .info a.open { display: inline-block; margin-top: 20px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+
+  @media (max-width: 560px) {
+    header { padding: 14px 16px 0; }
+    .controls .sep { display: none; }
+    .shelf { padding: 40px 16px 0; }
+    .card { grid-template-columns: 1fr; padding: 22px; gap: 18px; }
+    .card .cover { width: 140px; height: 210px; margin: 0 auto; }
+    .card .cover .ct { font-size: 17px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<header><span>EM</span><span>Parte I</span><span class="count" id="count"></span></header>
+<h1>La mia<br>libreria</h1>
+<p class="stats" id="stats">&nbsp;</p>
+<nav class="controls" aria-label="Filtri">
+  <button data-f="all" aria-pressed="true">Tutti</button>
+  <button data-f="Finished" aria-pressed="false">Letti</button>
+  <button data-f="Reading" aria-pressed="false">In lettura</button>
+  <button data-f="Not started" aria-pressed="false">Da leggere</button>
+  <span class="sep"></span>
+  <select id="sort" aria-label="Ordina">
+    <option value="created">Per arrivo</option>
+    <option value="color">Per colore</option>
+    <option value="author">Per autore</option>
+    <option value="title">Per titolo</option>
+    <option value="rating">Per voto</option>
+  </select>
+</nav>
+<div class="shelf-wrap"><div class="shelf" id="shelf"></div></div>
+<div class="shelf-base"></div>
+
+<div class="detail" id="detail" aria-hidden="true">
+  <div class="card" role="dialog" aria-modal="true" aria-labelledby="d-title">
+    <button class="close" aria-label="Chiudi">×</button>
+    <div id="d-cover"></div>
+    <div class="info" id="d-info"></div>
+  </div>
+</div>
+
+<script>
+// Colori editoriali: [sfondo, testo]
+const PALETTE = [
+  ["#e8622c", "#1b1a18"], ["#f4a7c4", "#1b1a18"], ["#1f2b4d", "#efede8"], ["#d8343a", "#f6efe6"],
+  ["#e8a33a", "#1b1a18"], ["#26231f", "#efede8"], ["#cfcdc8", "#1b1a18"], ["#2f4fa0", "#efede8"],
+  ["#7c8b6a", "#f6efe6"], ["#efe7d6", "#1b1a18"], ["#5b2a3a", "#f3d9c8"], ["#b8c8d8", "#1b2a3a"],
+];
+const STATUS_IT = { "Finished": "Letto", "Reading": "In lettura", "Not started": "Da leggere" };
+
+let books = [], filter = "all", sortBy = "created";
+
+function hash(s) { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.codePointAt(0), 16777619); return h >>> 0; }
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+function looks(b) {
+  const h = hash(b.id + b.title);
+  const [c, t] = PALETTE[h % PALETTE.length];
+  // Il dorso si allunga quanto basta a contenere titolo e cognome dell'autore
+  const small = b.title.length > 26;
+  const need = 40 + b.title.length * (small ? 6.4 : 8.6) + surname(b).length * 7;
+  return { c, t, h, small, style: (h >> 4) % 4, height: Math.min(270, Math.max(168 + ((h >> 8) % 70), need)), width: Math.max(26, Math.min(62, 18 + (b.pages || 200) / 9)) };
+}
+function surname(b) { return (b.author || "").trim().split(/\s+/).pop(); }
+function coverUrl(b) { return b.cover || b.autoCover || null; }
+function overview(b) { return b.overview && !/^book progress$/i.test(b.overview.trim()) ? b.overview : null; }
+
+function coverHTML(b, lk) {
+  const url = coverUrl(b);
+  return `<div class="cover" style="--c:${lk.c};--t:${lk.t}">
+    <span class="ct">${esc(b.title)}</span><span class="rule"></span><span class="ca">${esc(b.author || "")}</span>
+    ${url ? `<img src="${esc(url)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+  </div>`;
+}
+
+function sorted(list) {
+  const by = {
+    created: (a, b) => a.created.localeCompare(b.created),
+    title: (a, b) => a.title.localeCompare(b.title, "it"),
+    author: (a, b) => (a.author || "").localeCompare(b.author || "", "it") || a.title.localeCompare(b.title, "it"),
+    rating: (a, b) => b.rating - a.rating,
+    color: (a, b) => PALETTE.indexOf(PALETTE.find(p => p[0] === looks(a).c)) - PALETTE.indexOf(PALETTE.find(p => p[0] === looks(b).c)),
+  }[sortBy];
+  return [...list].sort(by);
+}
+
+function render() {
+  const shelf = document.getElementById("shelf");
+  const list = sorted(books.filter(b => filter === "all" || b.status === filter));
+  shelf.innerHTML = list.length ? "" : `<p class="empty">Nessun libro qui, per ora.</p>`;
+  list.forEach((b, i) => {
+    const lk = looks(b);
+    const el = document.createElement("button");
+    el.className = "book";
+    el.style.setProperty("--i", i);
+    el.setAttribute("aria-label", `${b.title}${b.author ? ", " + b.author : ""}`);
+    el.title = b.title;
+    if (b.status === "Reading") {
+      // I libri in lettura sono esposti di copertina, come in vetrina
+      el.classList.add("face");
+      el.style.width = "128px"; el.style.height = "190px"; el.style.margin = "0 10px";
+      el.innerHTML = coverHTML(b, lk) + `<span class="ribbon">In lettura</span>`;
+    } else {
+      el.classList.add("s" + lk.style);
+      if (lk.small) el.classList.add("small");
+      el.style.cssText += `--c:${lk.c};--t:${lk.t};--h:${lk.height}px;width:${lk.width}px;height:${lk.height}px`;
+      if (i % 7 === 4 && i < list.length - 1) { el.classList.add("lean"); el.style.setProperty("--tilt", "-9deg"); }
+      el.innerHTML = `${b.publisher ? '<span class="mark"></span>' : ""}<span class="spine"><span class="a">${esc(surname(b))}</span><span class="t">${esc(b.title)}</span></span>`;
+    }
+    el.addEventListener("click", () => openDetail(b));
+    shelf.appendChild(el);
+  });
+}
+
+function openDetail(b) {
+  const lk = looks(b);
+  document.getElementById("d-cover").innerHTML = coverHTML(b, lk);
+  const pct = b.pages ? Math.round(100 * Math.min(1, (b.status === "Finished" ? b.pages : (b.pagesRead || 0)) / b.pages)) : null;
+  const stars = b.rating ? `<div class="stars" aria-label="${b.rating} su 5">${"★".repeat(b.rating)}<span class="off">${"★".repeat(5 - b.rating)}</span></div>` : "";
+  const fin = b.finished ? new Date(b.finished).toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" }) : null;
+  const ov = overview(b);
+  document.getElementById("d-info").innerHTML = `
+    <div class="kicker">${STATUS_IT[b.status] || b.status}</div>
+    <h2 id="d-title">${esc(b.title)}</h2>
+    ${b.author ? `<div class="by">${esc(b.author)}</div>` : ""}
+    ${stars}
+    <dl>
+      ${b.publisher ? `<dt>Editore</dt><dd>${esc(b.publisher)}</dd>` : ""}
+      ${b.pages ? `<dt>Pagine</dt><dd>${b.pages}</dd>` : ""}
+      ${fin ? `<dt>Finito il</dt><dd>${fin}</dd>` : ""}
+      ${b.genres.length ? `<dt>Genere</dt><dd class="tags">${b.genres.map(g => `<span>${esc(g)}</span>`).join("")}</dd>` : ""}
+    </dl>
+    ${pct !== null && b.status === "Reading" ? `<div class="progress"><dt>Progresso · ${pct}%</dt><div class="bar"><i style="width:${pct}%"></i></div></div>` : ""}
+    ${ov ? `<p class="ov">${esc(ov)}</p>` : ""}
+    <a class="open" href="${esc(b.url)}" target="_blank" rel="noopener">Apri in Notion →</a>`;
+  const d = document.getElementById("detail");
+  d.classList.add("open"); d.setAttribute("aria-hidden", "false");
+  d.querySelector(".close").focus();
+}
+function closeDetail() { const d = document.getElementById("detail"); d.classList.remove("open"); d.setAttribute("aria-hidden", "true"); }
+
+document.getElementById("detail").addEventListener("click", e => { if (e.target.id === "detail" || e.target.closest(".close")) closeDetail(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDetail(); });
+document.querySelectorAll(".controls button").forEach(btn => btn.addEventListener("click", () => {
+  filter = btn.dataset.f;
+  document.querySelectorAll(".controls button").forEach(x => x.setAttribute("aria-pressed", x === btn));
+  render();
+}));
+document.getElementById("sort").addEventListener("change", e => { sortBy = e.target.value; render(); });
+
+fetch("books.json?t=" + Date.now()).then(r => r.json()).then(data => {
+  books = data.books;
+  const read = books.filter(b => b.status === "Finished").length;
+  const reading = books.filter(b => b.status === "Reading").length;
+  const pages = books.filter(b => b.status === "Finished").reduce((s, b) => s + (b.pages || 0), 0);
+  document.getElementById("count").textContent = `${books.length} volumi`;
+  document.getElementById("stats").textContent = `${read} letti · ${reading} in lettura · ${pages.toLocaleString("it-IT")} pagine sfogliate`;
+  render();
+}).catch(() => { document.getElementById("shelf").innerHTML = `<p class="empty">Impossibile caricare i libri.</p>`; });
+</script>
+</body>
+</html>
