@@ -219,17 +219,30 @@ function render() {
   showInfo();
 }
 
-// Il dorso prende il colore medio della copertina caricata in Notion
+// Il dorso prende il colore dominante più vivace della copertina caricata in Notion
 function sampleColor(b, el) {
   const img = new Image();
   img.onload = () => {
     try {
-      const cv = document.createElement("canvas"); cv.width = cv.height = 12;
-      const cx = cv.getContext("2d"); cx.drawImage(img, 0, 0, 12, 12);
-      const d = cx.getImageData(0, 0, 12, 12).data;
-      let r = 0, g = 0, bl = 0;
-      for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; bl += d[i + 2]; }
-      const n = d.length / 4; r = r / n | 0; g = g / n | 0; bl = bl / n | 0;
+      const S = 32, cv = document.createElement("canvas"); cv.width = cv.height = S;
+      const cx = cv.getContext("2d"); cx.drawImage(img, 0, 0, S, S);
+      const d = cx.getImageData(0, 0, S, S).data;
+      const buckets = {};
+      for (let i = 0; i < d.length; i += 4) {
+        const k = (d[i] >> 5) << 6 | (d[i + 1] >> 5) << 3 | d[i + 2] >> 5;
+        const o = buckets[k] || (buckets[k] = { n: 0, r: 0, g: 0, b: 0 });
+        o.n++; o.r += d[i]; o.g += d[i + 1]; o.b += d[i + 2];
+      }
+      let best = null, bestScore = -1;
+      for (const o of Object.values(buckets)) {
+        const r = o.r / o.n, g = o.g / o.n, bl = o.b / o.n;
+        const mx = Math.max(r, g, bl), mn = Math.min(r, g, bl);
+        const sat = mx ? (mx - mn) / mx : 0;
+        // Bianchi della carta e neri del testo contano poco, i colori pieni molto
+        const score = o.n * (0.15 + sat * 1.6) * (mx > 235 && sat < .12 ? .25 : 1) * (mx < 30 ? .4 : 1);
+        if (score > bestScore) { bestScore = score; best = [r, g, bl]; }
+      }
+      const [r, g, bl] = best.map(v => Math.round(v));
       const c = "#" + [r, g, bl].map(v => v.toString(16).padStart(2, "0")).join("");
       const tx = (0.299 * r + 0.587 * g + 0.114 * bl) > 150 ? "#1b1a18" : "#f6efe6";
       coverColors[b.id] = [c, tx];
