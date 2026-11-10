@@ -22,8 +22,7 @@
   html, body { background: var(--paper); color: var(--ink); }
   body { font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
 
-  header { display: flex; justify-content: flex-end; padding: 18px 24px 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
-  h1 { font-family: var(--serif); font-weight: 500; text-align: center; font-size: clamp(24px, 4.2vw, 40px); line-height: 1; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; margin: 4px 16px 8px; }
+  h1 { font-family: var(--serif); font-weight: 500; text-align: center; font-size: clamp(24px, 4.2vw, 40px); line-height: 1; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; margin: 22px 16px 8px; }
   .stats { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
 
   .controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 14px; margin: 16px 16px 0; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
@@ -35,9 +34,9 @@
   /* mensola con frecce */
   .stage { position: relative; margin-top: 10px; padding: 0 56px; }
   .viewport { overflow: hidden; touch-action: pan-y; }
-  .track { display: flex; align-items: flex-end; gap: 3px; width: max-content; padding: 70px 24px 0; min-height: 360px; transition: transform .7s var(--ease); }
+  .track { display: flex; align-items: flex-end; gap: 3px; width: max-content; padding: 30px 24px 0; min-height: 140px; transition: transform .7s var(--ease); }
   .shelf-base { height: 10px; background: linear-gradient(var(--shelf), #b9b2a3); border-radius: 1px; box-shadow: 0 8px 14px -8px rgba(0,0,0,.35); }
-  .arrow { position: absolute; top: calc(50% + 30px); width: 38px; height: 38px; margin-top: -19px; border-radius: 50%; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s, opacity .2s; z-index: 3; }
+  .arrow { position: absolute; top: calc(50% + 10px); width: 38px; height: 38px; margin-top: -19px; border-radius: 50%; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s, opacity .2s; z-index: 3; }
   .arrow:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
   .arrow:disabled { opacity: .25; cursor: default; }
   .arrow.prev { left: 10px; }
@@ -98,20 +97,18 @@
   .info a.open { grid-column: 1 / -1; justify-self: start; margin-top: 6px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
 
   @media (max-width: 560px) {
-    header { padding: 14px 16px 0; }
     .controls .sep { display: none; }
     .stage { padding: 0 40px; }
     .arrow { width: 32px; height: 32px; margin-top: -16px; }
     .arrow.prev { left: 4px; }
     .arrow.next { right: 4px; }
-    .track { padding: 70px 12px 0; }
+    .track { padding: 30px 12px 0; }
     .info .card { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
-<header><span id="count"></span></header>
 <h1>La mia libreria</h1>
 <p class="stats" id="stats">&nbsp;</p>
 <nav class="controls" aria-label="Filtri">
@@ -395,8 +392,7 @@ Promise.all([fetch("books.json?t=" + Date.now()).then(r => r.json()), fontsReady
   const read = books.filter(b => b.status === "Finished").length;
   const reading = books.filter(b => b.status === "Reading").length;
   const pages = books.filter(b => b.status === "Finished").reduce((s, b) => s + (b.pages || 0), 0);
-  document.getElementById("count").textContent = `${books.length} volumi`;
-  document.getElementById("stats").textContent = `${read} letti · ${reading} in lettura · ${pages.toLocaleString("it-IT")} pagine sfogliate`;
+  document.getElementById("stats").textContent = `${books.length} volumi · ${read} letti · ${reading} in lettura · ${pages.toLocaleString("it-IT")} pagine sfogliate`;
   render();
 }).catch(() => { document.getElementById("track").innerHTML = `<p class="empty">Impossibile caricare i libri.</p>`; });
 </script>
