@@ -327,12 +327,10 @@ function renderOverview() {
   for (let i = 0; i < list.length; i += PER_SHELF) rows.push(list.slice(i, i + PER_SHELF).map((b, j) => [b, i + j]));
   const widest = Math.max(...rows.map(r => r.reduce((s, [b, i]) => s + looks(b, i).T + GAP, 0) + 2 * 47));
   const k = Math.min(.62, (ov.clientWidth - 32) / (widest + 24));
-  ov.innerHTML = rows.map(r => `<div class="ov-shelf"><div class="ov-books" style="--k:${k.toFixed(3)}">${r.map(([b, i]) => {
-    const lk = looks(b, i), j = i % PER_SHELF, last = j === r.length - 1;
-    // Su ogni scaffale un libro inclinato a sinistra e uno a destra
-    const lean = last ? "" : j === 3 ? " lean-l" : j === 9 ? " lean-r" : "";
+  ov.innerHTML = rows.map(r => { const leans = shelfLeans(r.map(([b]) => b)); return `<div class="ov-shelf"><div class="ov-books" style="--k:${k.toFixed(3)}">${r.map(([b, i]) => {
+    const lk = looks(b, i), lean = leans[i % PER_SHELF] || "";
     return `<button class="mini${lean}" data-i="${i}" style="--ml:${Math.round(lk.H * .17)}px;--c:${lk.c};--tx:${lk.tx};--h:${lk.H}px;--t:${lk.T}px;--n:${lk.n};--fs:${lk.fs}px;--lh:${lk.lh}px" aria-label="${esc(b.title)}${b.author ? ", " + esc(b.author) : ""}"><span class="face spine">${b.status === "Reading" ? '<span class="ribbon"></span>' : ""}<span class="txt">${b.author ? `<span class="a">${esc(b.author)}</span>` : ""}<span class="t">${esc(b.title)}</span></span></span></button>`;
-  }).join("")}</div><div class="shelf-base"></div></div>`).join("") + `<div class="tip" id="tip"></div>`;
+  }).join("")}</div><div class="shelf-base"></div></div>`; }).join("") + `<div class="tip" id="tip"></div>`;
   const tip = document.getElementById("tip");
   ov.querySelectorAll(".mini").forEach(el => {
     const b = list[+el.dataset.i];
@@ -349,6 +347,22 @@ function renderOverview() {
     el.addEventListener("blur", () => tip.classList.remove("on"));
     el.addEventListener("click", () => { setZoom(false); select(+el.dataset.i); });
   });
+}
+
+// Inclinati di ogni scaffale: posizioni e versi scelti in base ai libri presenti,
+// mai il primo né l'ultimo, mai due vicini; uno ogni 6-7 libri circa
+function shelfLeans(row) {
+  const out = {}, n = row.length;
+  let seed = hash(row.map(b => b.id).join(""));
+  const rnd = m => { seed = Math.imul(seed ^ seed >>> 15, 2246822507) >>> 0; seed ^= seed >>> 13; return seed % m; };
+  const free = Array.from({ length: Math.max(0, n - 2) }, (_, k) => k + 1);
+  let count = n >= 10 ? 2 : n >= 3 ? 1 : 0, dirs = rnd(2) ? ["l", "r"] : ["r", "l"];
+  while (count-- > 0 && free.length) {
+    const j = free.splice(rnd(free.length), 1)[0];
+    out[j] = " lean-" + dirs[count % 2];
+    for (const x of [j - 1, j + 1]) { const k = free.indexOf(x); if (k >= 0) free.splice(k, 1); }
+  }
+  return out;
 }
 
 function setZoom(on) {
