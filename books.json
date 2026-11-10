@@ -16,9 +16,9 @@
    "pagesRead": 472,
    "finished": "2025-01-16",
    "overview": null,
-   "cover": null,
-   "created": "2023-10-23T17:50:00.000Z",
-   "autoCover": null
+   "cover": "covers/1558b2deb96b4356bca9b2d0ade5673f.jpg",
+   "coverKey": "79ec6aa7-8d71-4853-ab36-ea75406ba149:2025-03-20T15:42:00.000Z",
+   "created": "2023-10-23T17:50:00.000Z"
   },
   {
    "id": "92fed515-ece4-4edc-9724-86391500bd8d",
@@ -36,9 +36,9 @@
    "pagesRead": 182,
    "finished": null,
    "overview": "Book Progress",
-   "cover": null,
-   "created": "2023-10-23T17:50:00.000Z",
-   "autoCover": null
+   "cover": "covers/92fed515ece44edc972486391500bd8d.png",
+   "coverKey": "c10de34f-0e7e-44cf-bad9-13dbf7e02006:2026-09-03T14:58:00.000Z",
+   "created": "2023-10-23T17:50:00.000Z"
   },
   {
    "id": "79873216-8a96-4355-a30d-336645b2c8df",
@@ -55,9 +55,9 @@
    "pagesRead": 176,
    "finished": "2025-01-16",
    "overview": null,
-   "cover": null,
-   "created": "2023-10-23T17:50:00.000Z",
-   "autoCover": null
+   "cover": "covers/798732168a964355a30d336645b2c8df.jpg",
+   "coverKey": "47d1149f-ef66-4aa9-97c8-674af594bba0:2025-03-20T15:54:00.000Z",
+   "created": "2023-10-23T17:50:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-80fc-8cea-c5a6bd745f3e",
@@ -75,9 +75,9 @@
    "pagesRead": 304,
    "finished": null,
    "overview": null,
-   "cover": null,
-   "created": "2025-03-20T15:50:00.000Z",
-   "autoCover": "https://covers.openlibrary.org/b/id/14518676-L.jpg"
+   "cover": "covers/1bc265b8a30c80fc8ceac5a6bd745f3e.jpg",
+   "coverKey": "1bc265b8-a30c-807d-afb1-e4c1956ceb33:2025-03-20T15:50:00.000Z",
+   "created": "2025-03-20T15:50:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-800e-a96d-c8a8616197a8",
@@ -94,9 +94,9 @@
    "pagesRead": 160,
    "finished": "2025-01-16",
    "overview": null,
-   "cover": null,
-   "created": "2025-03-20T16:09:00.000Z",
-   "autoCover": null
+   "cover": "covers/1bc265b8a30c800ea96dc8a8616197a8.png",
+   "coverKey": "1bc265b8-a30c-803e-8e3a-fa1971a184fd:2025-03-20T16:11:00.000Z",
+   "created": "2025-03-20T16:09:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-80a9-9054-e8b1f1d355af",
@@ -113,9 +113,9 @@
    "pagesRead": 128,
    "finished": "2025-01-16",
    "overview": null,
-   "cover": null,
-   "created": "2025-03-20T16:13:00.000Z",
-   "autoCover": null
+   "cover": "covers/1bc265b8a30c80a99054e8b1f1d355af.png",
+   "coverKey": "1bc265b8-a30c-8095-897b-e61fecb747f7:2025-03-20T16:14:00.000Z",
+   "created": "2025-03-20T16:13:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-80f8-b082-cc38754f5830",
@@ -132,9 +132,9 @@
    "pagesRead": 160,
    "finished": null,
    "overview": null,
-   "cover": null,
-   "created": "2025-03-20T16:39:00.000Z",
-   "autoCover": "https://covers.openlibrary.org/b/id/569477-L.jpg"
+   "cover": "covers/1bc265b8a30c80f8b082cc38754f5830.png",
+   "coverKey": "1bd265b8-a30c-8078-9873-c34890cf8cbd:2025-03-21T08:19:00.000Z",
+   "created": "2025-03-20T16:39:00.000Z"
   },
   {
    "id": "1c0265b8-a30c-8015-bdfe-ea060408e958",
@@ -151,9 +151,9 @@
    "pagesRead": 400,
    "finished": "2026-07-01",
    "overview": null,
-   "cover": null,
-   "created": "2025-03-24T14:18:00.000Z",
-   "autoCover": null
+   "cover": "covers/1c0265b8a30c8015bdfeea060408e958.png",
+   "coverKey": "1c0265b8-a30c-8056-92ae-c8ec29b31a06:2026-09-22T11:52:00.000Z",
+   "created": "2025-03-24T14:18:00.000Z"
   },
   {
    "id": "1ed265b8-a30c-80b5-b27b-c0c0bf96c9bd",
@@ -170,9 +170,9 @@
    "pagesRead": 163,
    "finished": "2025-05-08",
    "overview": null,
-   "cover": null,
-   "created": "2025-05-08T12:07:00.000Z",
-   "autoCover": null
+   "cover": "covers/1ed265b8a30c80b5b27bc0c0bf96c9bd.jpeg",
+   "coverKey": "1ed265b8-a30c-8091-b1bb-ecfd14594423:2025-05-08T12:09:00.000Z",
+   "created": "2025-05-08T12:07:00.000Z"
   },
   {
    "id": "1f2265b8-a30c-80c8-bc87-ca4ef5b42b8e",
@@ -189,9 +189,9 @@
    "pagesRead": 252,
    "finished": null,
    "overview": "Book progress",
-   "cover": null,
-   "created": "2025-05-13T13:35:00.000Z",
-   "autoCover": null
+   "cover": "covers/1f2265b8a30c80c8bc87ca4ef5b42b8e.png",
+   "coverKey": "1f2265b8-a30c-80a3-a984-ec7f8e7482ea:2025-05-13T13:37:00.000Z",
+   "created": "2025-05-13T13:35:00.000Z"
   },
   {
    "id": "1f8265b8-a30c-80b7-aade-e3fb3d462c9e",
@@ -208,9 +208,9 @@
    "pagesRead": null,
    "finished": null,
    "overview": null,
-   "cover": null,
-   "created": "2025-05-19T13:57:00.000Z",
-   "autoCover": null
+   "cover": "covers/1f8265b8a30c80b7aadee3fb3d462c9e.png",
+   "coverKey": "1f8265b8-a30c-805b-a77b-d3db421c11a8:2025-09-27T23:33:00.000Z",
+   "created": "2025-05-19T13:57:00.000Z"
   },
   {
    "id": "224265b8-a30c-80c8-aff8-e9c578fa02e6",
@@ -227,9 +227,9 @@
    "pagesRead": 186,
    "finished": null,
    "overview": "Book Progress",
-   "cover": null,
-   "created": "2025-07-02T10:28:00.000Z",
-   "autoCover": null
+   "cover": "covers/224265b8a30c80c8aff8e9c578fa02e6.png",
+   "coverKey": "224265b8-a30c-8036-96fb-f88b71b59885:2026-02-19T20:15:00.000Z",
+   "created": "2025-07-02T10:28:00.000Z"
   },
   {
    "id": "230265b8-a30c-801c-ab88-e16f14c5f4b6",
@@ -246,9 +246,9 @@
    "pagesRead": 196,
    "finished": null,
    "overview": "Book progress",
-   "cover": null,
-   "created": "2025-07-14T15:28:00.000Z",
-   "autoCover": null
+   "cover": "covers/230265b8a30c801cab88e16f14c5f4b6.png",
+   "coverKey": "231265b8-a30c-8029-b5dd-fb81fd257197:2025-07-15T06:05:00.000Z",
+   "created": "2025-07-14T15:28:00.000Z"
   },
   {
    "id": "281265b8-a30c-8076-b0d7-c3b873289eed",
@@ -265,9 +265,9 @@
    "pagesRead": 237,
    "finished": "2025-10-03",
    "overview": null,
-   "cover": null,
-   "created": "2025-10-03T15:43:00.000Z",
-   "autoCover": null
+   "cover": "covers/281265b8a30c8076b0d7c3b873289eed.png",
+   "coverKey": "281265b8-a30c-807d-b004-f5df965f2c7d:2026-02-19T20:15:00.000Z",
+   "created": "2025-10-03T15:43:00.000Z"
   },
   {
    "id": "293265b8-a30c-807e-9620-dd3cf636e43e",
@@ -284,9 +284,9 @@
    "pagesRead": 196,
    "finished": "2025-10-21",
    "overview": null,
-   "cover": null,
-   "created": "2025-10-21T16:22:00.000Z",
-   "autoCover": "https://covers.openlibrary.org/b/id/554640-L.jpg"
+   "cover": "covers/293265b8a30c807e9620dd3cf636e43e.png",
+   "coverKey": "293265b8-a30c-80ef-a857-d58643419a1f:2025-10-21T16:23:00.000Z",
+   "created": "2025-10-21T16:22:00.000Z"
   },
   {
    "id": "293265b8-a30c-803a-8d17-f0d8b0cc8577",
@@ -303,9 +303,9 @@
    "pagesRead": null,
    "finished": null,
    "overview": "Book Progress",
-   "cover": null,
-   "created": "2025-10-21T16:25:00.000Z",
-   "autoCover": null
+   "cover": "covers/293265b8a30c803a8d17f0d8b0cc8577.png",
+   "coverKey": "293265b8-a30c-80f6-b5fc-d86965314886:2025-10-21T16:27:00.000Z",
+   "created": "2025-10-21T16:25:00.000Z"
   }
  ]
 }
