@@ -64,15 +64,17 @@
   .tip span { display: block; font-family: var(--serif); font-size: 13px; opacity: .75; margin-top: 2px; }
 
   /* mensola con frecce */
-  .stage { position: relative; margin-top: 10px; padding: 0 56px; }
+  .stage { position: relative; margin-top: 10px; padding: 0 24px; }
   .viewport { overflow: hidden; touch-action: pan-y; }
   .track { display: flex; align-items: flex-end; gap: 3px; width: max-content; padding: 30px 24px 0; min-height: 140px; transition: transform .7s var(--ease); }
   .shelf-base { height: 10px; background: linear-gradient(var(--shelf), #b9b2a3); border-radius: 1px; box-shadow: 0 8px 14px -8px rgba(0,0,0,.35); }
-  .arrow { position: absolute; top: calc(50% + 10px); width: 38px; height: 38px; margin-top: -19px; border-radius: 50%; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s, opacity .2s; z-index: 3; }
-  .arrow:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+  /* frecce semplici sotto la mensola */
+  .arrows { display: flex; justify-content: center; gap: 36px; margin-top: 12px; }
+  .arrow { width: 36px; height: 32px; padding: 0; border: 0; background: none; color: var(--ink); font: 400 22px/1 var(--sans); cursor: pointer; transition: opacity .2s, translate .2s var(--ease); }
+  .arrow.prev:hover:not(:disabled) { translate: -3px 0; }
+  .arrow.next:hover:not(:disabled) { translate: 3px 0; }
   .arrow:disabled { opacity: .25; cursor: default; }
-  .arrow.prev { left: 10px; }
-  .arrow.next { right: 10px; }
+  .arrow:focus-visible { outline: 1px solid var(--ink); outline-offset: 2px; }
   .empty { color: var(--muted); font-family: var(--serif); font-style: italic; font-size: 22px; align-self: center; margin: auto; padding: 0 40px; }
 
   /* libro 3D: --t spessore, --w larghezza copertina, --h altezza */
@@ -133,10 +135,7 @@
 
   @media (max-width: 560px) {
     .controls .sep { display: none; }
-    .stage { padding: 0 40px; }
-    .arrow { width: 32px; height: 32px; margin-top: -16px; }
-    .arrow.prev { left: 4px; }
-    .arrow.next { right: 4px; }
+    .stage { padding: 0 12px; }
     .track { padding: 30px 12px 0; }
     .info .card { grid-template-columns: 1fr; }
   }
@@ -178,10 +177,12 @@
   </button>
 </nav>
 <div class="stage">
-  <button class="arrow prev" id="prev" aria-label="Libro precedente">←</button>
   <div class="viewport" id="viewport"><div class="track" id="track"></div></div>
   <div class="shelf-base"></div>
-  <button class="arrow next" id="next" aria-label="Libro successivo">→</button>
+  <div class="arrows">
+    <button class="arrow prev" id="prev" aria-label="Libro precedente">&lt;</button>
+    <button class="arrow next" id="next" aria-label="Libro successivo">&gt;</button>
+  </div>
 </div>
 <section class="info" id="info" aria-live="polite"></section>
 <section class="overview" id="overview" aria-label="Tutta la libreria"></section>
