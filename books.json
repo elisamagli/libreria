@@ -306,6 +306,25 @@
    "cover": "covers/293265b8a30c803a8d17f0d8b0cc8577.png",
    "coverKey": "293265b8-a30c-80f6-b5fc-d86965314886:2025-10-21T16:27:00.000Z",
    "created": "2025-10-21T16:25:00.000Z"
+  },
+  {
+   "id": "416265b8-a30c-8054-8857-cf2a9438e8ae",
+   "url": "https://app.notion.com/p/Segni-416265b8a30c80548857cf2a9438e8ae",
+   "title": "Segni",
+   "author": "Marco Pesatori",
+   "publisher": "Mimesis",
+   "genres": [
+    "Spiritualità"
+   ],
+   "rating": 0,
+   "status": "Reading",
+   "pages": 458,
+   "pagesRead": 148,
+   "finished": null,
+   "overview": "Book Progress",
+   "cover": "covers/416265b8a30c80548857cf2a9438e8ae.png",
+   "coverKey": "416265b8-a30c-80de-969f-ce8ec7ea7400:2026-11-12T08:22:00.000Z",
+   "created": "2026-11-12T08:14:00.000Z"
   }
  ]
 }
