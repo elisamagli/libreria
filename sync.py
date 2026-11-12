@@ -150,15 +150,24 @@ def text(prop):
     return None
 
 
+def one(value):
+    """Testo singolo anche se la proprietà è a scelta multipla (es. più autori)."""
+    if isinstance(value, list):
+        return ", ".join(value) or None
+    return value
+
+
 def to_book(page):
     p = page["properties"]
     rating = text(p.get("Rating")) or ""
+    # Il titolo è la proprietà di tipo "title", comunque si chiami (Name, Titolo…)
+    title_prop = next((v for v in p.values() if v.get("type") == "title"), None)
     return {
         "id": page["id"],
         "url": page["url"],
-        "title": text(p.get("Name")) or "Senza titolo",
-        "author": text(p.get("Author")),
-        "publisher": text(p.get("Editore")),
+        "title": text(title_prop) or "Senza titolo",
+        "author": one(text(p.get("Author") or p.get("Autore"))),
+        "publisher": one(text(p.get("Editore"))),
         "genres": text(p.get("Genre")) or [],
         "rating": rating.count("★"),
         "status": text(p.get("Status")) or "Not started",
