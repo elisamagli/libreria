@@ -48,9 +48,13 @@
   .zoomed .stage, .zoomed .info { display: none; }
 
   /* vista ridotta: tutti i libri su scaffali da 14 */
-  .overview { display: none; position: relative; margin: 18px auto 40px; padding: 0 16px; max-width: 980px; }
+  /* altezze fisse: la mensola resta alla stessa Y e la pagina non cambia altezza (niente salti in Notion) */
+  :root { --track-h: 320px; --info-h: 300px; --content-h: 696px; }
+  .overview { display: none; position: relative; margin: 10px auto 0; padding: 14px 16px 0; max-width: 980px; height: var(--content-h); overflow-y: auto; }
   .zoomed .overview { display: block; animation: fade .5s var(--ease) both; }
+  .ov-inner { width: fit-content; min-width: min(100%, 360px); margin: 0 auto; }
   .ov-shelf { margin-bottom: 26px; }
+  .ov-books { padding: 0 16px; }
   .ov-books { display: flex; align-items: flex-end; justify-content: center; gap: 3px; zoom: var(--k, .6); }
   .ov-shelf .shelf-base { height: 7px; }
   .mini { position: relative; flex: none; width: var(--t); height: var(--h); padding: 0; border: 0; background: none; cursor: pointer; transition: translate .25s var(--ease); }
@@ -66,7 +70,7 @@
   /* mensola con frecce */
   .stage { position: relative; margin-top: 10px; padding: 0 24px; }
   .viewport { overflow: hidden; touch-action: pan-y; }
-  .track { display: flex; align-items: flex-end; gap: 3px; width: max-content; padding: 30px 24px 0; min-height: 140px; transition: transform .7s var(--ease); }
+  .track { display: flex; align-items: flex-end; gap: 3px; width: max-content; padding: 30px 24px 0; height: var(--track-h); transition: transform .7s var(--ease); }
   .shelf-base { height: 10px; background: linear-gradient(var(--shelf), #b9b2a3); border-radius: 1px; box-shadow: 0 8px 14px -8px rgba(0,0,0,.35); }
   /* frecce semplici sotto la mensola */
   .arrows { display: flex; justify-content: center; gap: 36px; margin-top: 12px; }
@@ -114,7 +118,7 @@
   .cover .ca { font-size: 8px; letter-spacing: .16em; text-transform: uppercase; }
 
   /* scheda sotto la mensola */
-  .info { max-width: 620px; margin: 22px auto 30px; padding: 0 24px; min-height: 120px; }
+  .info { max-width: 620px; margin: 22px auto 0; padding: 0 24px; height: var(--info-h); overflow-y: auto; scrollbar-width: thin; }
   .info .hint { text-align: center; color: var(--muted); font-family: var(--serif); font-style: italic; font-size: 18px; padding-top: 14px; }
   .info .card { display: grid; grid-template-columns: 1fr auto; gap: 8px 32px; animation: fade .5s var(--ease) both; }
   @keyframes fade { from { opacity: 0; translate: 0 8px; } }
@@ -138,7 +142,7 @@
     .stage { padding: 0 12px; }
     .track { padding: 30px 12px 0; }
     /* telefono: scheda in colonna, a tutta larghezza */
-    .info { padding: 0 16px; margin-top: 18px; }
+    .info { padding: 0 16px; }
     .info .card { grid-template-columns: 1fr; gap: 14px; }
     .info h2 { font-size: 26px; }
     .info dl { grid-template-columns: 84px 1fr; padding-top: 12px; border-top: 1px solid var(--line); }
@@ -147,7 +151,8 @@
   /* schermi grandi: scheda accanto alla mensola */
   @media (min-width: 1000px) {
     .showcase { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: end; gap: 0 8px; max-width: 1440px; margin: 0 auto; }
-    .info { max-width: none; margin: 0 32px 66px 0; padding: 0; min-height: 0; }
+    :root { --content-h: 374px; }
+    .info { max-width: none; margin: 0 32px 66px 0; padding: 0; height: auto; max-height: calc(var(--track-h) - 30px); }
     .info .card { grid-template-columns: 1fr; gap: 12px; }
     .info dl { padding-top: 12px; border-top: 1px solid var(--line); grid-template-columns: 76px 1fr; }
     .info .tags { max-width: none; }
@@ -343,11 +348,13 @@ function renderOverview() {
   const rows = [];
   for (let i = 0; i < list.length; i += PER_SHELF) rows.push(list.slice(i, i + PER_SHELF).map((b, j) => [b, i + j]));
   const widest = Math.max(...rows.map(r => r.reduce((s, [b, i]) => s + looks(b, i).T + GAP, 0) + 2 * 47));
-  const k = Math.min(.62, (ov.clientWidth - 32) / (widest + 24));
-  ov.innerHTML = rows.map(r => { const leans = shelfLeans(r.map(([b]) => b)); return `<div class="ov-shelf"><div class="ov-books" style="--k:${k.toFixed(3)}">${r.map(([b, i]) => {
+  // Rimpicciolisce quanto serve perché tutti gli scaffali stiano nell'altezza fissa
+  const fitH = (ov.clientHeight - 24 - rows.length * 33) / (rows.length * MAX_H);
+  const k = Math.max(.3, Math.min(.62, (ov.clientWidth - 32) / (widest + 24), fitH));
+  ov.innerHTML = `<div class="ov-inner">` + rows.map(r => { const leans = shelfLeans(r.map(([b]) => b)); return `<div class="ov-shelf"><div class="ov-books" style="--k:${k.toFixed(3)}">${r.map(([b, i]) => {
     const lk = looks(b, i), lean = leans[i % PER_SHELF] || "";
     return `<button class="mini${lean}" data-i="${i}" style="--ml:${Math.round(lk.H * .17)}px;--c:${lk.c};--tx:${lk.tx};--h:${lk.H}px;--t:${lk.T}px;--n:${lk.n};--fs:${lk.fs}px;--lh:${lk.lh}px" aria-label="${esc(b.title)}${b.author ? ", " + esc(b.author) : ""}"><span class="face spine">${b.status === "Reading" ? '<span class="ribbon"></span>' : ""}<span class="txt">${b.author ? `<span class="a">${esc(b.author)}</span>` : ""}<span class="t">${esc(b.title)}</span></span></span></button>`;
-  }).join("")}</div><div class="shelf-base"></div></div>`; }).join("") + `<div class="tip" id="tip"></div>`;
+  }).join("")}</div><div class="shelf-base"></div></div>`; }).join("") + `</div><div class="tip" id="tip"></div>`;
   const tip = document.getElementById("tip");
   ov.querySelectorAll(".mini").forEach(el => {
     const b = list[+el.dataset.i];
@@ -468,6 +475,7 @@ function step(dir) {
 
 function showInfo() {
   const info = document.getElementById("info");
+  info.scrollTop = 0;
   const b = list[sel];
   if (!b) { info.innerHTML = list.length ? `<p class="hint">Clicca un libro o usa le frecce per sfogliare la mensola</p>` : ""; return; }
   const pct = b.pages ? Math.round(100 * Math.min(1, (b.pagesRead || 0) / b.pages)) : null;
