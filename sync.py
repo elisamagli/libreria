@@ -24,6 +24,40 @@ COVERS = os.path.join(ROOT, "covers")
 IMAGE_EXT = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 
 
+def spine_color(path):
+    """[sfondo, testo] del dorso: il colore dominante più vivace della copertina.
+
+    Stessa regola che usava la pagina: copertina ridotta a 32x32, pixel raggruppati
+    per colori simili, il bianco della carta e il nero del testo pesano poco.
+    Calcolato qui una volta sola, così il dorso non cambia colore a ogni apertura.
+    """
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    try:
+        with Image.open(path) as im:
+            px = list(im.convert("RGB").resize((32, 32), Image.BOX).getdata())
+    except Exception as e:
+        print(f"  colore non calcolato per {os.path.basename(path)}: {e}", file=sys.stderr)
+        return None
+    buckets = {}
+    for r, g, b in px:
+        o = buckets.setdefault((r >> 5, g >> 5, b >> 5), [0, 0, 0, 0])
+        o[0] += 1; o[1] += r; o[2] += g; o[3] += b
+    best, best_score = None, -1
+    for n, sr, sg, sb in buckets.values():
+        r, g, b = sr / n, sg / n, sb / n
+        mx, mn = max(r, g, b), min(r, g, b)
+        sat = (mx - mn) / mx if mx else 0
+        score = n * (0.15 + sat * 1.6) * (0.25 if mx > 235 and sat < .12 else 1) * (0.4 if mx < 30 else 1)
+        if score > best_score:
+            best_score, best = score, (r, g, b)
+    r, g, b = (round(v) for v in best)
+    text = "#1b1a18" if 0.299 * r + 0.587 * g + 0.114 * b > 150 else "#f6efe6"
+    return ["#%02x%02x%02x" % (r, g, b), text]
+
+
 def http_json(url, data=None, headers=None):
     req = urllib.request.Request(url, data=data, headers=headers or {})
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -134,6 +168,7 @@ def to_book(page):
         "overview": text(p.get("Overview")),
         "cover": None,
         "coverKey": None,
+        "color": None,
         "created": page["created_time"],
     }
 
@@ -150,12 +185,17 @@ def attach_covers(token, pages, books, previous):
         old = cache.get(b["id"], {})
         if key and key == old.get("coverKey") and old.get("cover") and os.path.exists(os.path.join(ROOT, old["cover"])):
             b["cover"], b["coverKey"] = old["cover"], key
+            b["color"] = old.get("color")
         elif key:
             try:
                 b["cover"], b["coverKey"] = download_cover(b["id"], url), key
                 print(f"  copertina aggiornata: {b['title']}")
             except Exception as e:
                 print(f"  copertina non scaricata per {b['title']}: {e}", file=sys.stderr)
+    # Colore del dorso: si ricalcola solo per copertine nuove o cambiate
+    for b in books:
+        if b["cover"] and not b["color"]:
+            b["color"] = spine_color(os.path.join(ROOT, b["cover"]))
     used = {os.path.basename(b["cover"]) for b in books if b["cover"]}
     if os.path.isdir(COVERS):
         for name in os.listdir(COVERS):

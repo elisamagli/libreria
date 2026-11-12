@@ -563,6 +563,8 @@ function fillFacets() {
 const fontsReady = Promise.all([`600 13px "Cormorant Garamond"`, `600 8.5px "Cormorant Garamond"`].map(f => document.fonts.load(f))).catch(() => {});
 Promise.all([fetch("books.json?t=" + Date.now()).then(r => r.json()), fontsReady]).then(([data]) => {
   books = data.books;
+  // Colore del dorso già calcolato durante l'aggiornamento da Notion: niente cambi a ogni apertura
+  books.forEach(b => { if (b.color) coverColors[b.id] = b.color; });
   const read = books.filter(b => b.status === "Finished").length;
   const reading = books.filter(b => b.status === "Reading").length;
   // Pagine sfogliate: tutte quelle dei libri letti più quelle già lette dei libri in corso
