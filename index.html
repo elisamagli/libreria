@@ -20,7 +20,8 @@
   }
   * { box-sizing: border-box; margin: 0; }
   html, body { background: var(--paper); color: var(--ink); }
-  body { font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
+  /* la pagina riempie esattamente l'altezza dell'embed di Notion (o della finestra) */
+  body { font-family: var(--sans); min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
 
   h1 { font-family: var(--serif); font-weight: 500; text-align: center; font-size: clamp(24px, 4.2vw, 40px); line-height: 1; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; margin: 22px 16px 8px; }
   .stats { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: .04em; }
@@ -45,12 +46,14 @@
   .sorter.active::after { content: ""; position: absolute; top: 3px; right: 2px; width: 6px; height: 6px; border-radius: 50%; background: #b3121b; }
   .tool { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0 !important; border: 0 !important; color: var(--ink) !important; }
   .tool svg { width: 18px; height: 18px; }
-  .zoomed .stage, .zoomed .info { display: none; }
+  .zoomed .showcase { display: none; }
 
   /* vista ridotta: tutti i libri su scaffali da 14 */
   /* altezze fisse: la mensola resta alla stessa Y e la pagina non cambia altezza (niente salti in Notion) */
-  :root { --track-h: 320px; --info-h: 300px; --content-h: 696px; }
-  .overview { display: none; position: relative; margin: 10px auto 0; padding: 14px 16px 0; max-width: 980px; height: var(--content-h); overflow-y: auto; }
+  /* --min-h: spazio minimo sotto i controlli; se l'embed è più alto, mensola e vista ridotta si allargano fino a riempirlo */
+  :root { --track-h: 320px; --min-h: 626px; }
+  .showcase { flex: 1 0 var(--min-h); display: flex; flex-direction: column; width: 100%; padding-bottom: 16px; }
+  .overview { display: none; position: relative; flex: 1 0 var(--min-h); height: 0; width: 100%; margin: 0 auto; padding: 24px 16px 16px; max-width: 980px; overflow-y: auto; }
   .zoomed .overview { display: block; animation: fade .5s var(--ease) both; }
   .ov-inner { width: fit-content; min-width: min(100%, 360px); margin: 0 auto; }
   .ov-shelf { margin-bottom: 26px; }
@@ -118,7 +121,7 @@
   .cover .ca { font-size: 8px; letter-spacing: .16em; text-transform: uppercase; }
 
   /* scheda sotto la mensola */
-  .info { max-width: 620px; margin: 22px auto 0; padding: 0 24px; height: var(--info-h); overflow-y: auto; scrollbar-width: thin; }
+  .info { flex: 1 0 0; min-height: 200px; height: 0; width: 100%; max-width: 620px; margin: 22px auto 0; padding: 0 24px; overflow-y: auto; scrollbar-width: thin; }
   .info .hint { text-align: center; color: var(--muted); font-family: var(--serif); font-style: italic; font-size: 18px; padding-top: 14px; }
   .info .card { display: grid; grid-template-columns: 1fr auto; gap: 8px 32px; animation: fade .5s var(--ease) both; }
   @keyframes fade { from { opacity: 0; translate: 0 8px; } }
@@ -150,9 +153,9 @@
   }
   /* schermi grandi: scheda accanto alla mensola */
   @media (min-width: 1000px) {
-    .showcase { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: end; gap: 0 8px; max-width: 1440px; margin: 0 auto; }
-    :root { --content-h: 374px; }
-    .info { max-width: none; margin: 0 32px 66px 0; padding: 0; height: auto; max-height: calc(var(--track-h) - 30px); }
+    :root { --min-h: 390px; }
+    .showcase { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: end; align-content: center; gap: 0 8px; max-width: 1440px; margin: 0 auto; }
+    .info { height: auto; min-height: 0; max-width: none; margin: 0 32px 66px 0; padding: 0; max-height: calc(var(--track-h) - 30px); }
     .info .card { grid-template-columns: 1fr; gap: 12px; }
     .info dl { padding-top: 12px; border-top: 1px solid var(--line); grid-template-columns: 76px 1fr; }
     .info .tags { max-width: none; }
