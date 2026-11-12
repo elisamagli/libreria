@@ -3,8 +3,10 @@
   {
    "id": "1558b2de-b96b-4356-bca9-b2d0ade5673f",
    "url": "https://app.notion.com/p/Invisibili-1558b2deb96b4356bca9b2d0ade5673f",
-   "title": "Invisibili",
-   "author": "Caroline Criado Perez",
+   "title": "Senza titolo",
+   "author": [
+    "Caroline Criado Perez"
+   ],
    "publisher": "Einaudi",
    "genres": [
     "Saggistica",
@@ -18,13 +20,19 @@
    "overview": null,
    "cover": "covers/1558b2deb96b4356bca9b2d0ade5673f.jpg",
    "coverKey": "79ec6aa7-8d71-4853-ab36-ea75406ba149:2025-03-20T15:42:00.000Z",
+   "color": [
+    "#f8f9f1",
+    "#1b1a18"
+   ],
    "created": "2023-10-23T17:50:00.000Z"
   },
   {
    "id": "92fed515-ece4-4edc-9724-86391500bd8d",
    "url": "https://app.notion.com/p/Il-maestro-e-Margherita-92fed515ece44edc972486391500bd8d",
-   "title": "Il maestro e Margherita",
-   "author": "Michail Bulgakov",
+   "title": "Senza titolo",
+   "author": [
+    "Michail Bulgakov"
+   ],
    "publisher": "Feltrinelli",
    "genres": [
     "Classico",
@@ -38,13 +46,19 @@
    "overview": "Book Progress",
    "cover": "covers/92fed515ece44edc972486391500bd8d.png",
    "coverKey": "c10de34f-0e7e-44cf-bad9-13dbf7e02006:2026-09-03T14:58:00.000Z",
+   "color": [
+    "#d3ab57",
+    "#1b1a18"
+   ],
    "created": "2023-10-23T17:50:00.000Z"
   },
   {
    "id": "79873216-8a96-4355-a30d-336645b2c8df",
    "url": "https://app.notion.com/p/Se-i-gatti-scomparissero-dal-mondo-798732168a964355a30d336645b2c8df",
-   "title": "Se i gatti scomparissero dal mondo",
-   "author": "Genki Kawamura",
+   "title": "Senza titolo",
+   "author": [
+    "Genki Kawamura"
+   ],
    "publisher": "Einaudi",
    "genres": [
     "Narrativa Straniera"
@@ -57,13 +71,19 @@
    "overview": null,
    "cover": "covers/798732168a964355a30d336645b2c8df.jpg",
    "coverKey": "47d1149f-ef66-4aa9-97c8-674af594bba0:2025-03-20T15:54:00.000Z",
+   "color": [
+    "#faf6ec",
+    "#1b1a18"
+   ],
    "created": "2023-10-23T17:50:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-80fc-8cea-c5a6bd745f3e",
    "url": "https://app.notion.com/p/Il-mostruoso-femminile-1bc265b8a30c80fc8ceac5a6bd745f3e",
-   "title": "Il mostruoso femminile",
-   "author": "Jude Ellison Sady Doyle",
+   "title": "Senza titolo",
+   "author": [
+    "Jude Ellison Sady Doyle"
+   ],
    "publisher": "Tlon",
    "genres": [
     "Saggistica",
@@ -77,13 +97,19 @@
    "overview": null,
    "cover": "covers/1bc265b8a30c80fc8ceac5a6bd745f3e.jpg",
    "coverKey": "1bc265b8-a30c-807d-afb1-e4c1956ceb33:2025-03-20T15:50:00.000Z",
+   "color": [
+    "#4c5450",
+    "#f6efe6"
+   ],
    "created": "2025-03-20T15:50:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-800e-a96d-c8a8616197a8",
    "url": "https://app.notion.com/p/I-miei-giorni-alla-libreria-Morisaki-1bc265b8a30c800ea96dc8a8616197a8",
-   "title": "I miei giorni alla libreria Morisaki",
-   "author": "Satoshi Yagisawa",
+   "title": "Senza titolo",
+   "author": [
+    "Satoshi Yagisawa"
+   ],
    "publisher": "Feltrinelli",
    "genres": [
     "Narrativa Straniera"
@@ -96,13 +122,19 @@
    "overview": null,
    "cover": "covers/1bc265b8a30c800ea96dc8a8616197a8.png",
    "coverKey": "1bc265b8-a30c-803e-8e3a-fa1971a184fd:2025-03-20T16:11:00.000Z",
+   "color": [
+    "#917154",
+    "#f6efe6"
+   ],
    "created": "2025-03-20T16:09:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-80a9-9054-e8b1f1d355af",
    "url": "https://app.notion.com/p/Lo-squalificato-1bc265b8a30c80a99054e8b1f1d355af",
-   "title": "Lo squalificato",
-   "author": "Osamu Dazai",
+   "title": "Senza titolo",
+   "author": [
+    "Osamu Dazai"
+   ],
    "publisher": "Feltrinelli",
    "genres": [
     "Narrativa Straniera"
@@ -115,13 +147,19 @@
    "overview": null,
    "cover": "covers/1bc265b8a30c80a99054e8b1f1d355af.png",
    "coverKey": "1bc265b8-a30c-8095-897b-e61fecb747f7:2025-03-20T16:14:00.000Z",
+   "color": [
+    "#6d545a",
+    "#f6efe6"
+   ],
    "created": "2025-03-20T16:13:00.000Z"
   },
   {
    "id": "1bc265b8-a30c-80f8-b082-cc38754f5830",
    "url": "https://app.notion.com/p/Kitchen-1bc265b8a30c80f8b082cc38754f5830",
-   "title": "Kitchen",
-   "author": "Banana Yoshimoto",
+   "title": "Senza titolo",
+   "author": [
+    "Banana Yoshimoto"
+   ],
    "publisher": "Feltrinelli",
    "genres": [
     "Narrativa Straniera"
@@ -134,13 +172,19 @@
    "overview": null,
    "cover": "covers/1bc265b8a30c80f8b082cc38754f5830.png",
    "coverKey": "1bd265b8-a30c-8078-9873-c34890cf8cbd:2025-03-21T08:19:00.000Z",
+   "color": [
+    "#fcfbfb",
+    "#1b1a18"
+   ],
    "created": "2025-03-20T16:39:00.000Z"
   },
   {
    "id": "1c0265b8-a30c-8015-bdfe-ea060408e958",
    "url": "https://app.notion.com/p/L-avvelenatrice-di-uomini-1c0265b8a30c8015bdfeea060408e958",
-   "title": "L'avvelenatrice di uomini",
-   "author": "Cathryn Kemp",
+   "title": "Senza titolo",
+   "author": [
+    "Cathryn Kemp"
+   ],
    "publisher": "Nord",
    "genres": [
     "Giallo"
@@ -153,13 +197,19 @@
    "overview": null,
    "cover": "covers/1c0265b8a30c8015bdfeea060408e958.png",
    "coverKey": "1c0265b8-a30c-8056-92ae-c8ec29b31a06:2026-09-22T11:52:00.000Z",
+   "color": [
+    "#2b1323",
+    "#f6efe6"
+   ],
    "created": "2025-03-24T14:18:00.000Z"
   },
   {
    "id": "1ed265b8-a30c-80b5-b27b-c0c0bf96c9bd",
    "url": "https://app.notion.com/p/Horrida-1ed265b8a30c80b5b27bc0c0bf96c9bd",
-   "title": "Horrida",
-   "author": "Louisa May Alcott",
+   "title": "Senza titolo",
+   "author": [
+    "Louisa May Alcott"
+   ],
    "publisher": "ReBelle Box",
    "genres": [
     "Horror"
@@ -172,13 +222,19 @@
    "overview": null,
    "cover": "covers/1ed265b8a30c80b5b27bc0c0bf96c9bd.jpeg",
    "coverKey": "1ed265b8-a30c-8091-b1bb-ecfd14594423:2025-05-08T12:09:00.000Z",
+   "color": [
+    "#8d98a7",
+    "#1b1a18"
+   ],
    "created": "2025-05-08T12:07:00.000Z"
   },
   {
    "id": "1f2265b8-a30c-80c8-bc87-ca4ef5b42b8e",
    "url": "https://app.notion.com/p/Finanza-personale-con-Excel-con-Mike-1f2265b8a30c80c8bc87ca4ef5b42b8e",
-   "title": "Finanza personale con Excel con Mike",
-   "author": "Michele Costopulos Cappi",
+   "title": "Senza titolo",
+   "author": [
+    "Michele Costopulos Cappi"
+   ],
    "publisher": "Apogeo",
    "genres": [
     "Ingegneria e informatica"
@@ -191,13 +247,19 @@
    "overview": "Book progress",
    "cover": "covers/1f2265b8a30c80c8bc87ca4ef5b42b8e.png",
    "coverKey": "1f2265b8-a30c-80a3-a984-ec7f8e7482ea:2025-05-13T13:37:00.000Z",
+   "color": [
+    "#27242d",
+    "#f6efe6"
+   ],
    "created": "2025-05-13T13:35:00.000Z"
   },
   {
    "id": "1f8265b8-a30c-80b7-aade-e3fb3d462c9e",
    "url": "https://app.notion.com/p/Una-straordinaria-follia-1f8265b8a30c80b7aadee3fb3d462c9e",
-   "title": "Una straordinaria follia",
-   "author": "Nassir Ghaemi",
+   "title": "Senza titolo",
+   "author": [
+    "Nassir Ghaemi"
+   ],
    "publisher": "Apogeo",
    "genres": [
     "Psichiatria"
@@ -210,13 +272,19 @@
    "overview": null,
    "cover": "covers/1f8265b8a30c80b7aadee3fb3d462c9e.png",
    "coverKey": "1f8265b8-a30c-805b-a77b-d3db421c11a8:2025-09-27T23:33:00.000Z",
+   "color": [
+    "#2d5751",
+    "#f6efe6"
+   ],
    "created": "2025-05-19T13:57:00.000Z"
   },
   {
    "id": "224265b8-a30c-80c8-aff8-e9c578fa02e6",
    "url": "https://app.notion.com/p/Fisica-esistenziale-224265b8a30c80c8aff8e9c578fa02e6",
-   "title": "Fisica esistenziale",
-   "author": "Sabine Hossenfelder",
+   "title": "Senza titolo",
+   "author": [
+    "Sabine Hossenfelder"
+   ],
    "publisher": "Apogeo",
    "genres": [
     "Divulgazione scientifica"
@@ -229,13 +297,19 @@
    "overview": "Book Progress",
    "cover": "covers/224265b8a30c80c8aff8e9c578fa02e6.png",
    "coverKey": "224265b8-a30c-8036-96fb-f88b71b59885:2026-02-19T20:15:00.000Z",
+   "color": [
+    "#fcfcfb",
+    "#1b1a18"
+   ],
    "created": "2025-07-02T10:28:00.000Z"
   },
   {
    "id": "230265b8-a30c-801c-ab88-e16f14c5f4b6",
    "url": "https://app.notion.com/p/Perch-sei-sempre-a-dieta-230265b8a30c801cab88e16f14c5f4b6",
-   "title": "Perché sei sempre a dieta",
-   "author": "Sara Olivieri",
+   "title": "Senza titolo",
+   "author": [
+    "Sara Olivieri"
+   ],
    "publisher": "Gribaudo",
    "genres": [
     "Salute famiglia e benessere personale"
@@ -248,13 +322,19 @@
    "overview": "Book progress",
    "cover": "covers/230265b8a30c801cab88e16f14c5f4b6.png",
    "coverKey": "231265b8-a30c-8029-b5dd-fb81fd257197:2025-07-15T06:05:00.000Z",
+   "color": [
+    "#7cb58f",
+    "#1b1a18"
+   ],
    "created": "2025-07-14T15:28:00.000Z"
   },
   {
    "id": "281265b8-a30c-8076-b0d7-c3b873289eed",
    "url": "https://app.notion.com/p/Lascia-che-la-vita-accada-281265b8a30c8076b0d7c3b873289eed",
-   "title": "Lascia che la vita accada",
-   "author": "Sara Colombo",
+   "title": "Senza titolo",
+   "author": [
+    "Sara Colombo"
+   ],
    "publisher": "Ponte alle Grazie",
    "genres": [
     "Narrativa Italiana"
@@ -267,13 +347,19 @@
    "overview": null,
    "cover": "covers/281265b8a30c8076b0d7c3b873289eed.png",
    "coverKey": "281265b8-a30c-807d-b004-f5df965f2c7d:2026-02-19T20:15:00.000Z",
+   "color": [
+    "#382c1c",
+    "#f6efe6"
+   ],
    "created": "2025-10-03T15:43:00.000Z"
   },
   {
    "id": "293265b8-a30c-807e-9620-dd3cf636e43e",
    "url": "https://app.notion.com/p/Don-t-make-me-think-293265b8a30c807e9620dd3cf636e43e",
-   "title": "Don’t make me think",
-   "author": "Steve Krug",
+   "title": "Senza titolo",
+   "author": [
+    "Steve Krug"
+   ],
    "publisher": "tecniche nuove",
    "genres": [
     "UI-UX"
@@ -286,13 +372,19 @@
    "overview": null,
    "cover": "covers/293265b8a30c807e9620dd3cf636e43e.png",
    "coverKey": "293265b8-a30c-80ef-a857-d58643419a1f:2025-10-21T16:23:00.000Z",
+   "color": [
+    "#fdb743",
+    "#1b1a18"
+   ],
    "created": "2025-10-21T16:22:00.000Z"
   },
   {
    "id": "293265b8-a30c-803a-8d17-f0d8b0cc8577",
    "url": "https://app.notion.com/p/La-caffettiera-del-masochista-293265b8a30c803a8d17f0d8b0cc8577",
-   "title": "La caffettiera del masochista",
-   "author": "Donald Norman",
+   "title": "Senza titolo",
+   "author": [
+    "Donald Norman"
+   ],
    "publisher": "Giunti",
    "genres": [
     "UI-UX"
@@ -305,13 +397,19 @@
    "overview": "Book Progress",
    "cover": "covers/293265b8a30c803a8d17f0d8b0cc8577.png",
    "coverKey": "293265b8-a30c-80f6-b5fc-d86965314886:2025-10-21T16:27:00.000Z",
+   "color": [
+    "#ffdd00",
+    "#1b1a18"
+   ],
    "created": "2025-10-21T16:25:00.000Z"
   },
   {
    "id": "416265b8-a30c-8054-8857-cf2a9438e8ae",
    "url": "https://app.notion.com/p/Segni-416265b8a30c80548857cf2a9438e8ae",
-   "title": "Segni",
-   "author": "Marco Pesatori",
+   "title": "Senza titolo",
+   "author": [
+    "Marco Pesatori"
+   ],
    "publisher": "Mimesis",
    "genres": [
     "Spiritualità"
@@ -324,6 +422,10 @@
    "overview": "Book Progress",
    "cover": "covers/416265b8a30c80548857cf2a9438e8ae.png",
    "coverKey": "416265b8-a30c-80de-969f-ce8ec7ea7400:2026-11-12T08:22:00.000Z",
+   "color": [
+    "#f7efd7",
+    "#1b1a18"
+   ],
    "created": "2026-11-12T08:14:00.000Z"
   }
  ]
