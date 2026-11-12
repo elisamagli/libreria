@@ -73,8 +73,14 @@
   .track { display: flex; align-items: flex-end; gap: 3px; width: max-content; padding: 30px 24px 0; height: var(--track-h); transition: transform .7s var(--ease); }
   .shelf-base { height: 10px; background: linear-gradient(var(--shelf), #b9b2a3); border-radius: 1px; box-shadow: 0 8px 14px -8px rgba(0,0,0,.35); }
   /* frecce semplici sotto la mensola */
-  .arrows { display: flex; justify-content: center; gap: 36px; margin-top: 12px; }
-  .arrow { width: 36px; height: 32px; padding: 0; border: 0; background: none; color: var(--ink); font: 400 22px/1 var(--sans); cursor: pointer; transition: opacity .2s, translate .2s var(--ease); }
+  .arrows { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 12px; }
+  .arrow { display: grid; place-items: center; width: 48px; height: 32px; padding: 0; border: 0; background: none; color: var(--ink); cursor: pointer; transition: opacity .2s, translate .2s var(--ease); }
+  .arrow svg { width: 40px; height: 12px; }
+  /* dorso vuoto in fondo alla mensola: apre il database Library per aggiungere un libro */
+  .add { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; width: 40px; height: 210px; margin-left: 6px; border: 1px dashed var(--muted); color: var(--muted); text-decoration: none; transition: translate .3s var(--ease), color .2s, border-color .2s; }
+  .add:hover, .add:focus-visible { translate: 0 -10px; color: var(--ink); border-color: var(--ink); border-style: solid; outline: none; }
+  .add b { font: 300 22px/1 var(--sans); }
+  .add span { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: .04em; }
   .arrow.prev:hover:not(:disabled) { translate: -3px 0; }
   .arrow.next:hover:not(:disabled) { translate: 3px 0; }
   .arrow:disabled { opacity: .25; cursor: default; }
@@ -200,8 +206,8 @@
   <div class="viewport" id="viewport"><div class="track" id="track"></div></div>
   <div class="shelf-base"></div>
   <div class="arrows">
-    <button class="arrow prev" id="prev" aria-label="Libro precedente">&lt;</button>
-    <button class="arrow next" id="next" aria-label="Libro successivo">&gt;</button>
+    <button class="arrow prev" id="prev" aria-label="Libro precedente"><svg viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1"><path d="M39 6H1M6 1 1 6l5 5"/></svg></button>
+    <button class="arrow next" id="next" aria-label="Libro successivo"><svg viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 6h38M34 1l5 5-5 5"/></svg></button>
   </div>
 </div>
 <section class="info" id="info" aria-live="polite"></section>
@@ -216,7 +222,8 @@ const PALETTE = [
   ["#7c8b6a", "#f6efe6"], ["#efe7d6", "#1b1a18"], ["#5b2a3a", "#f3d9c8"], ["#b8c8d8", "#1b2a3a"],
 ];
 const STATUS_IT = { "Finished": "Letto", "Reading": "In lettura", "Not started": "Da leggere" };
-const GAP = 3, OPEN_MARGIN = 26;
+const GAP = 3, OPEN_MARGIN = 26, ADD_W = 40 + 6;
+const ADD_URL = "https://www.notion.so/32d296bd0097477a8846842f0f5a16eb?v=416265b8a30c8186a84f000cf05cb113"; // modulo "Aggiungi un libro" del database Library
 
 let books = [], filter = "all", fPub = "", fGen = "", zoomed = false, sortBy = "created", list = [], sel = -1, offset = 0;
 const coverColors = {};
@@ -331,6 +338,7 @@ function render() {
     track.appendChild(el);
     if (b.cover && !coverColors[b.id]) sampleColor(b, el);
   });
+  track.insertAdjacentHTML("beforeend", `<a class="add" href="${ADD_URL}" target="_blank" rel="noopener" aria-label="Aggiungi un libro in Notion" title="Aggiungi un libro in Notion"><b>+</b><span>Aggiungi un libro</span></a>`);
   layout();
   showInfo();
   if (zoomed) renderOverview();
@@ -445,7 +453,7 @@ function positions() {
     out.push({ left, w });
     x = left + w + (open ? OPEN_MARGIN : 0) + GAP;
   });
-  return { out, total: x + 24 - GAP };
+  return { out, total: x + ADD_W + 24 };
 }
 
 function layout() {
