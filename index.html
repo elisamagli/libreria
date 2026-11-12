@@ -137,7 +137,21 @@
     .controls .sep { display: none; }
     .stage { padding: 0 12px; }
     .track { padding: 30px 12px 0; }
-    .info .card { grid-template-columns: 1fr; }
+    /* telefono: scheda in colonna, a tutta larghezza */
+    .info { padding: 0 16px; margin-top: 18px; }
+    .info .card { grid-template-columns: 1fr; gap: 14px; }
+    .info h2 { font-size: 26px; }
+    .info dl { grid-template-columns: 84px 1fr; padding-top: 12px; border-top: 1px solid var(--line); }
+    .info .tags { max-width: none; }
+  }
+  /* schermi grandi: scheda accanto alla mensola */
+  @media (min-width: 1000px) {
+    .showcase { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: end; gap: 0 8px; max-width: 1440px; margin: 0 auto; }
+    .info { max-width: none; margin: 0 32px 66px 0; padding: 0; min-height: 0; }
+    .info .card { grid-template-columns: 1fr; gap: 12px; }
+    .info dl { padding-top: 12px; border-top: 1px solid var(--line); grid-template-columns: 76px 1fr; }
+    .info .tags { max-width: none; }
+    .info .hint { text-align: left; padding-top: 0; }
   }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
@@ -176,6 +190,7 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3 20.5 20.5M7.5 10.5h6"/><path class="plus" d="M10.5 7.5v6" style="display:none"/></svg>
   </button>
 </nav>
+<div class="showcase">
 <div class="stage">
   <div class="viewport" id="viewport"><div class="track" id="track"></div></div>
   <div class="shelf-base"></div>
@@ -185,6 +200,7 @@
   </div>
 </div>
 <section class="info" id="info" aria-live="polite"></section>
+</div>
 <section class="overview" id="overview" aria-label="Tutta la libreria"></section>
 
 <script>
