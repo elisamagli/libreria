@@ -2,7 +2,8 @@ name: Sincronizza libreria da Notion
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # ogni 30 minuti
+    # ogni 30 minuti, ai :07 e ai :37: lontano dall'ora piena, quando GitHub è più carico e ritarda
+    - cron: "7,37 * * * *"
   workflow_dispatch:          # pulsante "Run workflow" per aggiornare subito
 
 permissions:
