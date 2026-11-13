@@ -393,6 +393,52 @@
     "#1b1a18"
    ],
    "created": "2026-11-12T08:14:00.000Z"
+  },
+  {
+   "id": "417265b8-a30c-80dd-b69a-cec6400bd5b1",
+   "url": "https://app.notion.com/p/Grande-figlio-di-puttana-417265b8a30c80ddb69acec6400bd5b1",
+   "title": "Grande figlio di puttana",
+   "author": "Eleazaro Rossi",
+   "publisher": "Feltrinelli",
+   "genres": [
+    "Comico"
+   ],
+   "rating": 3,
+   "status": "Finished",
+   "pages": 154,
+   "pagesRead": 154,
+   "finished": "2026-05-15",
+   "overview": null,
+   "cover": "covers/417265b8a30c80ddb69acec6400bd5b1.png",
+   "coverKey": "417265b8-a30c-8026-be76-ccf013cae19a:2026-11-13T14:24:00.000Z",
+   "color": [
+    "#fcec1b",
+    "#1b1a18"
+   ],
+   "created": "2026-11-13T14:24:00.000Z"
+  },
+  {
+   "id": "417265b8-a30c-800f-97ad-f0b719c7104e",
+   "url": "https://app.notion.com/p/Circe-417265b8a30c800f97adf0b719c7104e",
+   "title": "Circe",
+   "author": "Madeline Miller",
+   "publisher": "Feltrinelli",
+   "genres": [
+    "Fantasy"
+   ],
+   "rating": 4,
+   "status": "Finished",
+   "pages": 406,
+   "pagesRead": 406,
+   "finished": "2026-05-08",
+   "overview": null,
+   "cover": "covers/417265b8a30c800f97adf0b719c7104e.png",
+   "coverKey": "417265b8-a30c-8025-b7ad-df3f739fdcf9:2026-11-13T14:27:00.000Z",
+   "color": [
+    "#8c7248",
+    "#f6efe6"
+   ],
+   "created": "2026-11-13T14:26:00.000Z"
   }
  ]
 }
